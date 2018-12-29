@@ -19,27 +19,21 @@ namespace Do_An_SEP
 
         public bool Close()
         {
-            throw new NotImplementedException();
+            try
+            {
+                this.connection.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
-        public bool Delete(string query)
+        public void Execute(string query)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Read(string query)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Update(string query)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Insert(string query)
-        {
-            throw new NotImplementedException();
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.ExecuteNonQuery();
         }
 
         public bool Open()

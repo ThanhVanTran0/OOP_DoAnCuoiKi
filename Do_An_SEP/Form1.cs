@@ -13,10 +13,22 @@ namespace Do_An_SEP
 {
     public partial class Form1 : Form
     {
-        UserBUS _userBUS = new UserBUS();
+        RoleBUS _roleBus = new RoleBUS();
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Role role = new Role(1,nameRole.Text);
+            if (_roleBus.Insert(role))
+                MessageBox.Show("Thành công");
+            else MessageBox.Show("Không thành công");
+        }
+
+        private void nameRole_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }

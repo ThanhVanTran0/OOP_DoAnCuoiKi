@@ -8,14 +8,7 @@ namespace Do_An_SEP
     public interface IDataProvider
     {
         string stringConnection { get; set; }
-
-        bool Update(string query);
-        bool Delete(string query);
-
-        bool Insert(string query);
-
-        void Read(string query);
-
+        void Execute(string query);
         bool Close();
         bool Open();
     }

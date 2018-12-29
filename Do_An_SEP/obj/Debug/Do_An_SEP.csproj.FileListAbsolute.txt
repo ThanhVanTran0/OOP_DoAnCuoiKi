@@ -7,3 +7,13 @@ F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.csproj.GenerateResource.Cache
 F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.exe
 F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.pdb
 F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.Form1.resources
+C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\bin\Debug\Do_An_SEP.exe.config
+C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\bin\Debug\Do_An_SEP.exe
+C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\bin\Debug\Do_An_SEP.pdb
+C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\obj\Debug\Do_An_SEP.Form1.resources
+C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\obj\Debug\Do_An_SEP.Properties.Resources.resources
+C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\obj\Debug\Do_An_SEP.csproj.GenerateResource.cache
+C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\obj\Debug\Do_An_SEP.csproj.CoreCompileInputs.cache
+C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\obj\Debug\Do_An_SEP.exe
+C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\obj\Debug\Do_An_SEP.pdb
+C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\obj\Debug\Do_An_SEP.csprojAssemblyReference.cache
