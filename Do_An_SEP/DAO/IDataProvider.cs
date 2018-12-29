@@ -7,15 +7,16 @@ namespace Do_An_SEP
 {
     public interface IDataProvider
     {
-        string nameConnection { get; set; }
+        string stringConnection { get; set; }
 
-        bool Create();
         bool Update(string query);
         bool Delete(string query);
 
+        bool Insert(string query);
+
         void Read(string query);
 
-        bool Connect();
         bool Close();
+        bool Open();
     }
 }

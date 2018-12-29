@@ -7,9 +7,24 @@ namespace Do_An_SEP
 {
     public class User
     {
+        int id;
         string name;
         string password;
-        Role _role;
+        int _role;
+
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
         public string Name
         {
             get
@@ -36,7 +51,7 @@ namespace Do_An_SEP
             }
         }
 
-        public Role Role
+        public int Role
         {
             get
             {

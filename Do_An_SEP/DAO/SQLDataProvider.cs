@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -7,30 +8,16 @@ namespace Do_An_SEP
 {
     public class SQLDataProvider : IDataProvider
     {
-        public string nameConnection
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
+        private SqlConnection connection;
 
-            set
-            {
-                throw new NotImplementedException();
-            }
+        public string stringConnection { get; set; }
+
+        public SQLDataProvider(string _stringConnection)
+        {
+            this.stringConnection = _stringConnection;
         }
 
         public bool Close()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Connect()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Create()
         {
             throw new NotImplementedException();
         }
@@ -48,6 +35,25 @@ namespace Do_An_SEP
         public bool Update(string query)
         {
             throw new NotImplementedException();
+        }
+
+        public bool Insert(string query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Open()
+        {
+            this.connection = new SqlConnection(this.stringConnection);
+            try
+            {
+                this.connection.Open(); 
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
         }
     }
 }
