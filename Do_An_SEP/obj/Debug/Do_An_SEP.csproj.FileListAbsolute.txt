@@ -1,0 +1,8 @@
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\bin\Debug\Do_An_SEP.exe.config
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\bin\Debug\Do_An_SEP.exe
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\bin\Debug\Do_An_SEP.pdb
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.csprojResolveAssemblyReference.cache
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.Properties.Resources.resources
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.csproj.GenerateResource.Cache
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.exe
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.pdb
