@@ -1,30 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace Do_An_SEP.BUS
+namespace Lib.DAO
 {
-    class RoleBUS : BUS<Role>
+    class RoleDAO : DAO<Role>
     {
         public IDataProvider provider { get; set; }
+        public IDataProvider dataProvider { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public RoleBUS()
+        public RoleDAO(IDataProvider dataProvider)
         {
-
-            string connString = "Data Source=DESKTOP-251QNVR\\SQLEXPRESS;Initial Catalog=OOP;Integrated Security=True";
-
-            this.provider = new SQLDataProvider(connString);
-            if (this.provider.Open() == true)
-            {
-                MessageBox.Show("Connect thanh cong");
-            }
-            else
-            {
-                MessageBox.Show("Connect that bai");
-            }
+            provider = dataProvider;
         }
         public bool Delete(Role role)
         {
@@ -68,6 +58,17 @@ namespace Do_An_SEP.BUS
             }
         }
 
-
+        public Role Find(Role t)
+        {
+            Role role = new Role();
+            string query = string.Format("select * from Role where name='{0}'", t.Name);
+            DataTable a = new DataTable();
+            a = provider.ExecuteReturn(query);
+            if (a == null || a.Rows.Count == 0)
+                return null;
+            role.Id = (int)a.Rows[0]["ID"];
+            role.Name = (string)a.Rows[0]["name"];
+            return role;
+        }
     }
 }

@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Do_An_SEP
+namespace Lib
+
 {
     public class Role
     {
         private int id;
         private string name;
 
-        public Role(int id, string name)
+        public Role()
         {
-            this.id = id;
+        }
+
+        public Role(string name)
+        {
             this.name = name;
         }
 

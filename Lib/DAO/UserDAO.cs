@@ -1,31 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace Do_An_SEP.BUS
+namespace Lib.DAO
 {
-    class UserBUS : BUS<User>
+    class UserDAO:DAO<User>
     {
-        public IDataProvider provider { get; set; }
+        public IDataProvider dataProvider { get; set; }
 
-        public UserBUS()
+        public UserDAO(IDataProvider dataProvider)
         {
-
-            string connString = "Data Source=DESKTOP-251QNVR\\SQLEXPRESS;Initial Catalog=OOP;Integrated Security=True";
-
-            this.provider = new SQLDataProvider(connString);
-            if (this.provider.Open() == true)
-            {
-                MessageBox.Show("Connect thanh cong");
-            }
-            else
-            {
-                MessageBox.Show("Connect that bai");
-            }
+            this.dataProvider = dataProvider;
         }
 
         public bool Delete(User t)
@@ -33,7 +21,7 @@ namespace Do_An_SEP.BUS
             string query = string.Format("delete from TableUser where ID={0}", t.Id);
             try
             {
-                provider.Execute(query);
+                dataProvider.Execute(query);
                 return true;
             }
             catch (Exception e)
@@ -47,7 +35,7 @@ namespace Do_An_SEP.BUS
             string query = string.Format("insert into TableUser(name,pass,Role) values('{0}','{0}',{0})", t.Name, t.Password, t.Role);
             try
             {
-                provider.Execute(query);
+                dataProvider.Execute(query);
                 return true;
             }
             catch (Exception e)
@@ -61,13 +49,26 @@ namespace Do_An_SEP.BUS
             string query = string.Format("update TableUser set name='{0}', pass='{0}', Role={0} where ID={0}", t.Name, t.Password, t.Role, t.Id);
             try
             {
-                provider.Execute(query);
+                dataProvider.Execute(query);
                 return true;
             }
             catch (Exception e)
             {
                 return false;
             }
+        }
+
+        public User Find(User t)
+        {
+            User user = new User();
+            string query = string.Format("select * from TableUser where ID='{0}'", t.Id);
+            DataTable a = new DataTable();
+            a = dataProvider.ExecuteReturn(query);
+            user.Id = (int) a.Rows[0]["ID"];
+            user.Name =(string) a.Rows[0]["name"];
+            user.Password = (string) a.Rows[0]["pass"];
+            user.Role = (int) a.Rows[0]["Role"];
+            return user;
         }
     }
 }

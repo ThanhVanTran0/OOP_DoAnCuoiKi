@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
-namespace Do_An_SEP
+namespace Lib
 {
     public class SQLDataProvider : IDataProvider
     {
@@ -36,6 +37,7 @@ namespace Do_An_SEP
             cmd.ExecuteNonQuery();
         }
 
+
         public bool Open()
         {
             this.connection = new SqlConnection(this.stringConnection);
@@ -48,6 +50,14 @@ namespace Do_An_SEP
             {
                 return false;
             }
+        }
+
+        public DataTable ExecuteReturn(string query)
+        {
+            DataTable table = new DataTable();
+            SqlDataAdapter cmd = new SqlDataAdapter(query, connection);
+            cmd.Fill(table);
+            return table;
         }
     }
 }
