@@ -1,12 +1,12 @@
-﻿using Lib.BUS;
-using Lib.DAO;
+﻿using MembershipLib.BUS;
+using MembershipLib.DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib
+namespace MembershipLib
 {
     class Program
     {
@@ -21,10 +21,12 @@ namespace Lib
             Role role = new Role("admin");
             RoleDAO roleDAO = new RoleDAO(dataProvider);
             RoleBUS roleBUS = new RoleBUS(roleDAO);
-            if (roleBUS.Insert(role))
-                Console.WriteLine("Thanh cong");
-            else
-                Console.WriteLine("That bai");
+            List<Role> listRole =   roleBUS.selectAll();
+            for (int i = 0; i < listRole.Count; i++)
+            {
+                Console.WriteLine(listRole[i].Id);
+            }
+
         }
     }
 }
