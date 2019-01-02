@@ -1,12 +1,3 @@
-F:\HK7\OOP\Do_An_SEP\Do_An_SEP\bin\Debug\Do_An_SEP.exe.config
-F:\HK7\OOP\Do_An_SEP\Do_An_SEP\bin\Debug\Do_An_SEP.exe
-F:\HK7\OOP\Do_An_SEP\Do_An_SEP\bin\Debug\Do_An_SEP.pdb
-F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.csprojResolveAssemblyReference.cache
-F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.Properties.Resources.resources
-F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.csproj.GenerateResource.Cache
-F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.exe
-F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.pdb
-F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.Form1.resources
 C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\obj\Debug\Do_An_SEP.csprojAssemblyReference.cache
 C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\obj\Debug\Do_An_SEP.Form1.resources
 C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\obj\Debug\Do_An_SEP.Properties.Resources.resources
@@ -21,3 +12,15 @@ C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\bin\Debug\MembershipLib.dll
 C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\bin\Debug\MembershipLib.pdb
 C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\obj\Debug\Do_An_SEP.csproj.CopyComplete
 C:\Users\phan thao\Desktop\OOP_DoAnCuoiKi\Do_An_SEP\obj\Debug\Do_An_SEP.Add.resources
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\bin\Debug\Do_An_SEP.exe.config
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\bin\Debug\Do_An_SEP.exe
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\bin\Debug\Do_An_SEP.pdb
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\bin\Debug\MembershipLib.dll
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\bin\Debug\MembershipLib.pdb
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.csprojResolveAssemblyReference.cache
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.Add.resources
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.Form1.resources
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.Properties.Resources.resources
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.csproj.GenerateResource.Cache
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.exe
+F:\HK7\OOP\Do_An_SEP\Do_An_SEP\obj\Debug\Do_An_SEP.pdb

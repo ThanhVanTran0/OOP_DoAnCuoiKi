@@ -36,12 +36,12 @@ namespace MembershipLib.BUS
 
         public List<User> selectAll()
         {
-            throw new NotImplementedException();
+            return dao.selectAll();
         }
 
         public DataTable selectAllTable()
         {
-            throw new NotImplementedException();
+            return dao.selectAllTable();
         }
 
         public bool Update(User user)

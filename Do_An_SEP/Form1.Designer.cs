@@ -1,6 +1,6 @@
 ﻿namespace Do_An_SEP
 {
-    partial class Form1
+    partial class Form1<T>
     {
         /// <summary>
         /// Required designer variable.

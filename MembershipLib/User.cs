@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MembershipLib.ATT;
 
 namespace MembershipLib
 {
@@ -11,7 +12,19 @@ namespace MembershipLib
         string name;
         string password;
         int _role;
+        public User()
+        {
 
+        }
+        public User(string name,string password,string _role)
+        {
+            this.name = name;
+            this.password = password;
+            this._role = Int32.Parse(_role);
+        }
+
+
+        [IdentityAttribute]
         public int Id
         {
             get
