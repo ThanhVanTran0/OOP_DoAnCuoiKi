@@ -1,9 +1,9 @@
 ﻿using MembershipLib.ATT;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace MembershipLib.DAO
 {
-    public class SqlDaoObj<T> : DAOObj<T>
+    public class MySqlDaoObj<T> : DAOObj<T>
     {
-        public SqlDaoObj(IDataProvider _dataProvider) : base(_dataProvider)
+        public MySqlDaoObj(IDataProvider _dataProvider) : base(_dataProvider)
         {
         }
 
@@ -30,8 +30,8 @@ namespace MembershipLib.DAO
                 {
                     if (att is PrimaryKey)
                     {
-                        query = string.Format("delete from dbo.[{0}] where {1}=@{1}", type.Name, item.Name);
-                        list.Add(new SqlParameter("@" + item.Name, item.GetValue(t)));
+                        query = string.Format("delete from {0} where {1}=@{1}", type.Name, item.Name);
+                        list.Add(new MySqlParameter("@" + item.Name, item.GetValue(t)));
                         break;
                     }
                 }
@@ -65,8 +65,8 @@ namespace MembershipLib.DAO
                 {
                     if (att is PrimaryKey)
                     {
-                        query = string.Format("select * from dbo.[{0}] where {1}=@{1}", type.Name, item.Name);
-                        list.Add(new SqlParameter("@" + item.Name, item.GetValue(t)));
+                        query = string.Format("select * from {0} where {1}=@{1}", type.Name, item.Name);
+                        list.Add(new MySqlParameter("@" + item.Name, item.GetValue(t)));
                         break;
                     }
                 }
@@ -117,13 +117,13 @@ namespace MembershipLib.DAO
 
                 value += item.Name + ",";
                 param += "@" + item.Name + ",";
-                list.Add(new SqlParameter("@" + item.Name, item.GetValue(t)));
+                list.Add(new MySqlParameter("@" + item.Name, item.GetValue(t)));
             }
 
             value = value.Substring(0, value.Length - 1);
             param = param.Substring(0, param.Length - 1);
 
-            query = "insert into dbo.[" + type.Name + "](" + value + ") values(" + param + ")";
+            query = "insert into " + type.Name + "(" + value + ") values(" + param + ")";
 
             try
             {
@@ -144,7 +144,7 @@ namespace MembershipLib.DAO
         public override DataTable selectAllTable()
         {
             Type type = typeof(T);
-            string query = string.Format("select * from dbo.[{0}]", type.Name);
+            string query = string.Format("select * from {0}", type.Name);
             DataTable a = new DataTable();
             a = dataProvider.ExecuteReturn(query);
             return a;
@@ -159,7 +159,7 @@ namespace MembershipLib.DAO
 
             string value = "";
             string KeyValue = "";
-            SqlParameter keyParamater = null;
+            MySqlParameter keyParamater = null;
 
             foreach (var item in pop)
             {
@@ -171,7 +171,7 @@ namespace MembershipLib.DAO
                     {
                         res = true;
                         KeyValue = item.Name + "= @" + item.Name;
-                        keyParamater = new SqlParameter("@" + item.Name, item.GetValue(t));
+                        keyParamater = new MySqlParameter("@" + item.Name, item.GetValue(t));
                         break;
                     }
                 }
@@ -180,12 +180,12 @@ namespace MembershipLib.DAO
                     continue;
 
                 value += item.Name + "=@" + item.Name + ",";
-                list.Add(new SqlParameter("@" + item.Name, item.GetValue(t)));
+                list.Add(new MySqlParameter("@" + item.Name, item.GetValue(t)));
             }
 
             value = value.Substring(0, value.Length - 1);
             list.Add(keyParamater);
-            query = "update dbo.[" + type.Name + "] set " + value + " where " + KeyValue;
+            query = "update " + type.Name + " set " + value + " where " + KeyValue;
 
             try
             {
@@ -197,7 +197,6 @@ namespace MembershipLib.DAO
                 return false;
             }
 
-            return false;
         }
     }
 }

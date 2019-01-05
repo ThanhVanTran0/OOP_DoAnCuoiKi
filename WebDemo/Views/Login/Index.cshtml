@@ -9,7 +9,14 @@
     <input type="text" class="form_input" placeholder="Username" name="username"/>
     <input type="password" class="form_input" placeholder="Password" name="password"/>
     <input type="submit" class="login_btn"/>
+    @if (ViewBag.Error != null)
+    {
+        <p class="erorMsg">@ViewBag.ErrorMsg</p>
+    }
+
 </form>
+
+
 
 <style>
     .login_form {
@@ -32,5 +39,8 @@
         margin: 10px auto;
         width: 100px;
         height: 40px;
+    }
+    .erorMsg{
+        margin: 10px auto;
     }
 </style>

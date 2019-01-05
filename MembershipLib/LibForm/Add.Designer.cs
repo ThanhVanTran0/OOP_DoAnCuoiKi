@@ -1,4 +1,4 @@
-﻿namespace Do_An_SEP
+﻿namespace MembershipLib.LibForm
 {
     partial class Add<T>
     {

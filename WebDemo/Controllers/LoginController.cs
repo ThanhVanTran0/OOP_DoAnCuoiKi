@@ -17,20 +17,21 @@ namespace WebDemo.Controllers
             return View();
         }
 
+
+
         public ActionResult CheckLogin(string username, string password)
         {
             if (PUser.Login(username, password))
             {
-                HttpCookie cookie = new HttpCookie("name");
-                cookie.Value = username;
-                this.ControllerContext.HttpContext.Response.Cookies.Add(cookie);
+                CookieHandler.setCookie(this, username);
                 return RedirectToAction("Index", "Home");
 
             }
             else
             {
                 ViewBag.Error = true;
-                return View("Login");
+                ViewBag.ErrorMsg = "Lỗi đăng nhập";
+                return View("Index");
             }
         }
     }

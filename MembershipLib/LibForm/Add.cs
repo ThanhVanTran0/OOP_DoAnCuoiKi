@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MembershipLib.ATT;
 
-namespace Do_An_SEP
+namespace MembershipLib.LibForm
 {
     public partial class Add<T> : Form
     {
@@ -96,7 +96,7 @@ namespace Do_An_SEP
         {
             if(formType == FORMTYPE.ADD)
             {
-                if (Moudle.INSTANCE.GetModel<BUS<T>>().Insert(mObject))
+                if (Moudle<T>.INSTANCE.GetModel<BUSObj<T>>().Insert(mObject))
                 {
                     MessageBox.Show("Insert thành công");
                     this.DialogResult = DialogResult.OK;
@@ -108,7 +108,7 @@ namespace Do_An_SEP
             }
             else
             {
-                if (Moudle.INSTANCE.GetModel<BUSObj<T>>().Update(mObject))
+                if (Moudle<T>.INSTANCE.GetModel<BUSObj<T>>().Update(mObject))
                 {
                     MessageBox.Show("Update thành công");
                     this.DialogResult = DialogResult.OK;

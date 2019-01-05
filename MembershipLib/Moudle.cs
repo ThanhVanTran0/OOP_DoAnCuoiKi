@@ -1,5 +1,6 @@
 ﻿using MembershipLib.BUS;
 using MembershipLib.DAO;
+using MembershipLib.Factory;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace MembershipLib
 {
-    public class Moudle
+    public class Moudle<T>
     {
         Dictionary<Type, object> moudle = new Dictionary<Type, object>();
-        public static Moudle INSTANCE = new Moudle();
+        public static Moudle<T> INSTANCE = new Moudle<T>();
 
         private Moudle()
         {
@@ -21,16 +22,25 @@ namespace MembershipLib
         public void Init()
         {
             string connect = @"Data Source=DESKTOP-R4KLFLJ\SQLEXPRESS;Initial Catalog=OOP_CUOI_KI;Integrated Security=True";
-            IDataProvider dataProvider = new SQLDataProvider(connect);
+            //string connect = "datasource=127.0.0.1;port=3306;username=root;password=;database=OOP_CUOI_KI";
+            IDataProvider dataProvider = DataProviderFactory.GetInstance().CreateDataProvider(DATATYPE.SQL, connect);
             dataProvider.Open();
             SetModel<IDataProvider>(dataProvider);
 
-            DAOObj<Role> dao = new SqlDaoObj<Role>(dataProvider);
-            BUSObj<Role> bus = new BUSObj<Role>(dao);
+            DAOObj<T> dao = DAOFactory.GetInstance().CreateDAO<T>(DATATYPE.SQL, dataProvider);
+            BUSObj<T> bus = new BUSObj<T>(dao);
 
-            SetModel<DAOObj<Role>>(dao);
-            SetModel<BUSObj<Role>>(bus);
+            SetModel<BUSObj<T>>(bus);
 
+            DAO<User> userdao = new UserDAO(dataProvider);
+            BUS<User> userbus = new UserBUS(userdao);
+
+            SetModel<BUS<User>>(userbus);
+
+            DAO<Role> roleDao = new RoleDAO(dataProvider);
+            BUS<Role> roleBus = new RoleBUS(roleDao);
+
+            SetModel<BUS<Role>>(roleBus);
         }
 
         public void SetModel<Inf>(Inf model)

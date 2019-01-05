@@ -1,6 +1,4 @@
-﻿using MembershipLib;
-using MembershipLib.BUS;
-using MembershipLib.DAO;
+﻿using MembershipLib.BUS;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,46 +10,31 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Do_An_SEP
+namespace MembershipLib.LibForm
 {
-    public partial class Form1<T> : Form
+    public partial class BaseForm<T> : Form
     {
-        public Form1()
+        public BaseForm()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BaseForm_Load(object sender, EventArgs e)
         {
+            LoadData();
+            Type type = typeof(T);
+            lbTitle.Text = "Table " + type.Name;
         }
 
-        private void nameRole_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
         private void LoadData()
         {
-            BUSObj<T> bus = Moudle.INSTANCE.GetModel<BUSObj<T>>();
-            if(bus != null)
+            BUSObj<T> bus = Moudle<T>.INSTANCE.GetModel<BUSObj<T>>();
+            if (bus != null)
             {
                 DataTable table = bus.selectAllTable();
                 data.DataSource = table;
                 data.Update();
             }
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            LoadData();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -66,13 +49,17 @@ namespace Do_An_SEP
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            DataRowView row = (DataRowView)data.SelectedRows[0].DataBoundItem;
-            T delObj = ConvertDataRow(row);
-            if (Moudle.INSTANCE.GetModel<BUSObj<T>>().Delete(delObj))
-                MessageBox.Show("Xóa thành công");
-            else
-                MessageBox.Show("Lỗi xóa");
-            LoadData();
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn xóa?", "", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                DataRowView row = (DataRowView)data.SelectedRows[0].DataBoundItem;
+                T delObj = ConvertDataRow(row);
+                if (Moudle<T>.INSTANCE.GetModel<BUSObj<T>>().Delete(delObj))
+                    MessageBox.Show("Xóa thành công");
+                else
+                    MessageBox.Show("Lỗi xóa");
+                LoadData();
+            }
         }
 
         private T ConvertDataRow(DataRowView row)

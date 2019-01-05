@@ -34,6 +34,7 @@ namespace MembershipLib
 
         [IdentityAttribute]
         [PrimaryKey]
+
         public int Id
         {
             get
