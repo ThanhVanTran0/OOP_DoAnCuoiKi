@@ -25,33 +25,33 @@ namespace WebDemo.Controllers
             return View();
         }
 
-        [CheckAuthorize(Roles="admin")]
+       
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
-        public ActionResult Login()
+        [CheckPermission(Roles = "admin")]
+        public ActionResult OnlyAdmin()
         {
             return View();
         }
 
-        public ActionResult CheckLogin(string username, string password)
+        [CheckPermission(Users = "thang")]
+        public ActionResult OnlyUser()
         {
-            if(PUser.Login(username, password))
-            {
-                HttpCookie cookie = new HttpCookie("name");
-                cookie.Value = username;
-                this.ControllerContext.HttpContext.Response.Cookies.Add(cookie);
-                return RedirectToAction("Contact");
-
-            }
-            else
-            {
-                ViewBag.Error = true;
-                return View("Login");
-            }
+            return View();
+        }
+        public ActionResult Logout()
+        {
+            CookieHandler.deleteCookie(this);
+            return RedirectToAction("Index", "Home");
+        }
+        [CheckPermission(Users = "thang2", Roles = "admin")]
+        public ActionResult AdminAndThang2()
+        {
+            return View();
         }
     }
 }

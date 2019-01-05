@@ -14,18 +14,16 @@ namespace MembershipLib.Attribute
         public void OnAuthorization(AuthorizationContext filterContext)
         {
             var a = HttpContext.Current.Request.Cookies["name"];
-            if(a != null)
+            if (a != null && a.Value != "")
             {
-                if (a.Value != "")
+                User u = new User();
+                u.Name = a.Value;
+                if (PUser.CheckValidate(u))
                 {
-                    User u = new User();
-                    u.Name = a.Value;
-                    if (PUser.CheckValidate(u))
-                    {
-                        filterContext.Result = new RedirectResult("/Home");
-                    }
+                    
+                    filterContext.Result = new RedirectResult("/Home");
                 }
-                
+
             }
         }
     }

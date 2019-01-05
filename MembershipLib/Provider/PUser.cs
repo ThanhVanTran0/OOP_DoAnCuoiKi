@@ -17,8 +17,8 @@ namespace MembershipLib.Provider
         public static bool CheckPermission(string name, string role)
         {
             User user = BUSUSER.FindByKey("name", name);
-            Role _role = BUSROLE.FindByKey("name", role);
-            if (!(user == null) && !(_role == null) && user.Role == _role.Id)
+            Role _role = BUSROLE.FindByKey("ID", user.Role.ToString());
+            if (!(user == null) && !(_role == null) && role.Contains(_role.Name))
                 return true;
             return false;
         }
@@ -27,5 +27,6 @@ namespace MembershipLib.Provider
         {
             return BUSUSER.CheckValidate(u);
         }
+
     }
 }
