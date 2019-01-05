@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@if (HttpContext.Current.Request.Cookies["name"] == null)
+{
+    <h3>@ViewBag.Title</h3>
+    <p>Chưa đăng nhập</p>
+}
+else
+{
+    <h3>@ViewBag.Title</h3>
+    <p>Đã đăng nhập</p>
+}
