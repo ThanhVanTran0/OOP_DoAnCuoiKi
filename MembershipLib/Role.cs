@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MembershipLib.ATT;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace MembershipLib
             this.Name = name;
         }
 
+        [IdentityAttribute]
         public int Id
         {
             get

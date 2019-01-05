@@ -32,7 +32,7 @@ namespace MembershipLib.DAO
 
         public bool Insert(User t)
         {
-            string query = string.Format("insert into TableUser(name,pass,Role) values('{0}','{1}',{2})", t.Name, t.Password, t.Role);
+            string query = string.Format("insert into TableUser(name,pass,Role) values('{0}','{1}',{2})", t.Name, t.Pass, t.Role);
             try
             {
                 dataProvider.Execute(query);
@@ -46,7 +46,7 @@ namespace MembershipLib.DAO
 
         public bool Update(User t)
         {
-            string query = string.Format("update TableUser set name='{0}', pass='{0}', Role={0} where ID={0}", t.Name, t.Password, t.Role, t.Id);
+            string query = string.Format("update TableUser set name='{0}', pass='{1}', Role={2} where ID={3}", t.Name, t.Pass, t.Role, t.Id);
             try
             {
                 dataProvider.Execute(query);
@@ -68,7 +68,7 @@ namespace MembershipLib.DAO
                 return null;
             user.Id = (int)a.Rows[0]["ID"];
             user.Name = (string)a.Rows[0]["name"];
-            user.Password = (string)a.Rows[0]["pass"];
+            user.Pass = (string)a.Rows[0]["pass"];
             user.Role = (int)a.Rows[0]["Role"];
             return user;
         }

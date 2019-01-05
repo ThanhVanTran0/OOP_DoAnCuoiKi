@@ -46,11 +46,11 @@ namespace MembershipLib.BUS
         public bool Update(Role role)
         {
             Role role1 = dao.Find(role);
-            if (role1 == null)
+            if(role1 != null)
+            {
                 return false;
-            if (role1.Name != role.Name)
-                role1.Name = role.Name;
-            return dao.Update(role1);
+            }
+            return dao.Update(role);
         }
     }
 }

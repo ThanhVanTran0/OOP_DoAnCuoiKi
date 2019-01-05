@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -35,7 +36,7 @@ namespace Do_An_SEP
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-          
+
         }
         private void LoadData()
         {
@@ -49,30 +50,50 @@ namespace Do_An_SEP
             LoadData();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             Add<T> add = new Add<T>();
-            DialogResult res =  add.ShowDialog();
-            if(res == DialogResult.OK)
+            DialogResult res = add.ShowDialog();
+            if (res == DialogResult.OK)
             {
                 LoadData();
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            string name = data.SelectedRows[0].Cells[1].Value.ToString();
-            //T item = new T(name);
-            //if (Moudle.INSTANCE.GetModel<BUS<T>>().Delete(item))
-            //    MessageBox.Show("thanh cong");
-            //else
-            //    MessageBox.Show("that bai");
-            //LoadData();
-
+            DataRowView row = (DataRowView)data.SelectedRows[0].DataBoundItem;
+            T delObj = ConvertDataRow(row);
+            if (Moudle.INSTANCE.GetModel<BUS<T>>().Delete(delObj))
+                MessageBox.Show("Xóa thành công");
+            else
+                MessageBox.Show("Lỗi xóa");
+            LoadData();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private T ConvertDataRow(DataRowView row)
         {
+            Type type = typeof(T);
+            PropertyInfo[] pop = type.GetProperties();
+            T obj = (T) Activator.CreateInstance(typeof(T));
+            foreach (var item in pop)
+            {
+                //Console.WriteLine(row[item.Name]);
+                item.SetValue(obj, row[item.Name]);
+            }
+            return obj;
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            DataRowView row = (DataRowView)data.SelectedRows[0].DataBoundItem;
+            T objUpdate = ConvertDataRow(row);
+            Add<T> add = new Add<T>(objUpdate);
+            DialogResult res = add.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                LoadData();
+            }
         }
     }
 }

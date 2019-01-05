@@ -16,38 +16,30 @@ namespace Do_An_SEP
 {
     public partial class Add<T> : Form
     {
-        private List<TextBox> arrTb;
+        private T mObject;
+        private FORMTYPE formType;
+        private string Title;
         public Add()
         {
             InitializeComponent();
-            arrTb = new List<TextBox>();
+            mObject = (T)Activator.CreateInstance(typeof(T));
+            formType = FORMTYPE.ADD;
+            Title = "Add";
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        public Add(T updateObj)
         {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //Role role = new Role(name.Text);
-            //if (Moudle.INSTANCE.GetModel<BUS<T>>().Insert(role))
-            //{
-            //    MessageBox.Show("Thanh cong");
-            //    this.DialogResult = DialogResult.OK;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("That bai");
-            //    this.DialogResult = DialogResult.Cancel;
-            //}
+            InitializeComponent();
+            mObject = updateObj;
+            formType = FORMTYPE.UPDATE;
+            Title = "Update";
         }
 
         private void Add_Load(object sender, EventArgs e)
         {
             Type type = typeof(T);
             string name = type.Name;
-            this.Text = "Add " + name;
+            this.Text = Title + " " + name;
             var prop = type.GetProperties();
             Size lbSize = new Size(100, 30);
             Point lbLocation = new Point(10, 10);
@@ -85,38 +77,52 @@ namespace Do_An_SEP
                 tb.Location = new Point(tbLocation.X, tbLocation.Y + nextY);
                 tb.Name = "txt" + item.Name;
                 this.Controls.Add(tb);
-                this.arrTb.Add(tb);
+                tb.DataBindings.Add("Text", mObject, item.Name);
                 nextY += 40;
             }
 
-            Button btnOk = new Button();
-            btnOk.Size = new Size(70, 30);
-            btnOk.Location = new Point(10, 10 + nextY);
-            btnOk.Name = "btnOK";
-            btnOk.Text = "OK";
-            this.Controls.Add(btnOk);
-            btnOk.Click += new EventHandler(btnOk_Click);
+
+            Button button = new Button();
+            button.Size = new Size(70, 30);
+            button.Location = new Point(10, 10 + nextY);
+            button.Name = "Button";
+
+            button.Text = Title;
+            button.Click += new EventHandler(button_Click);
+            this.Controls.Add(button);
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        private void button_Click(object sender, EventArgs e)
         {
-            string str = "";
-            List<object> OBJ = new List<object>();
-            foreach (var item in this.arrTb)
+            if(formType == FORMTYPE.ADD)
             {
-                OBJ.Add(item.Text);
-            }
-            Type sa = typeof(T);
-            T itemAdd = (T)sa.GetConstructors()[1].Invoke(OBJ.ToArray());
-            if (Moudle.INSTANCE.GetModel<BUS<T>>().Insert(itemAdd))
-            {
-                MessageBox.Show("OK");
-                this.DialogResult = DialogResult.OK;
+                if (Moudle.INSTANCE.GetModel<BUS<T>>().Insert(mObject))
+                {
+                    MessageBox.Show("Insert thành công");
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Insert lỗi");
+                }
             }
             else
             {
-                MessageBox.Show("Loi");
+                if (Moudle.INSTANCE.GetModel<BUS<T>>().Update(mObject))
+                {
+                    MessageBox.Show("Update thành công");
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Update lỗi");
+                }
             }
         }
+    }
+    public enum FORMTYPE
+    {
+        ADD,
+        UPDATE
     }
 }

@@ -10,7 +10,7 @@ namespace MembershipLib
     {
         int id;
         string name;
-        string password;
+        string pass;
         int _role;
         public User()
         {
@@ -19,7 +19,7 @@ namespace MembershipLib
         public User(string name,string password,string _role)
         {
             this.name = name;
-            this.password = password;
+            this.pass = password;
             this._role = Int32.Parse(_role);
         }
 
@@ -51,16 +51,16 @@ namespace MembershipLib
             }
         }
 
-        public string Password
+        public string Pass
         {
             get
             {
-                return password;
+                return pass;
             }
 
             set
             {
-                password = value;
+                pass = value;
             }
         }
 

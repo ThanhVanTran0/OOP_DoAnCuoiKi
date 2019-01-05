@@ -47,10 +47,9 @@ namespace MembershipLib.BUS
         public bool Update(User user)
         {
             User user1 = dao.Find(user);
-            if (user1 == null)
+            if (user1 != null || user1.Id != user.Id)
                 return false;
-            if (user1.Name != user.Name)
-                user1.Name = user.Name;
+
             return dao.Update(user1);
         }
     }

@@ -45,7 +45,7 @@ namespace MembershipLib.DAO
 
         public bool Update(Role role)
         {
-            string query = string.Format("update Role set name='{0}' where ID={0}", role.Name, role.Id);
+            string query = string.Format("update Role set name='{0}' where ID={1}", role.Name, role.Id);
             try
             {
                 dataProvider.Execute(query);
