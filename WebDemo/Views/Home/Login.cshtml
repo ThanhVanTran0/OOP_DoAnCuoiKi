@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+<form action="CheckLogin" method="post">
+	<input type="text" placeholder="Username" name="username" />
+	<input type="text" placeholder="Password" name="password"/>
+	<input type="submit" />
+</form>
+
+@if (ViewBag.Error != null)
+{
+	<h5>Loi ne</h5>
+}

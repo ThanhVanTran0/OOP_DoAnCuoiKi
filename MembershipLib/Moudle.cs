@@ -38,13 +38,13 @@ namespace MembershipLib
 
         public void SetModel<Inf>(Inf model)
         {
-
             moudle[typeof(Inf)] = model;
         }
         public Inf GetModel<Inf>()
         {
+            if (moudle.ContainsKey(typeof(Inf)) == false)
+                return default(Inf);
             return (Inf)moudle[typeof(Inf)];
         }
-
     }
 }

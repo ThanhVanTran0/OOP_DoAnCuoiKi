@@ -14,6 +14,7 @@ namespace MembershipLib.DAO
         bool Update(T t);
         bool Delete(T t);
 
+        T FindByKey(string key, string value);
         T Find(T t);
         List<T> selectAll();
         DataTable selectAllTable();

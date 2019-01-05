@@ -46,11 +46,28 @@ namespace MembershipLib.BUS
 
         public bool Update(User user)
         {
-            User user1 = dao.Find(user);
-            if (user1 != null || user1.Id != user.Id)
+            User user1 = dao.FindByKey("Id", user.Id.ToString());
+            if (user1 == null)
                 return false;
+            if (user1.Name == user.Name && user1.Pass == user.Pass && user1.Role == user.Role)
+                return false;
+            return dao.Update(user);
+        }
 
-            return dao.Update(user1);
+        public bool CheckValidate(User user)
+        {
+            User _user = dao.FindByKey("name", user.Name);
+            if (_user == null) return false;
+            return true;
+        }
+        public string GetPermission(string t)
+        {
+            return "";
+        }
+
+        public User FindByKey(string key, string value)
+        {
+            return dao.FindByKey(key, value);
         }
     }
 }

@@ -40,9 +40,13 @@ namespace Do_An_SEP
         }
         private void LoadData()
         {
-            DataTable table = Moudle.INSTANCE.GetModel<BUS<T>>().selectAllTable();
-            data.DataSource = table;
-            data.Update();
+            BUS<T> bus = Moudle.INSTANCE.GetModel<BUS<T>>();
+            if(bus != null)
+            {
+                DataTable table = bus.selectAllTable();
+                data.DataSource = table;
+                data.Update();
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -75,7 +79,7 @@ namespace Do_An_SEP
         {
             Type type = typeof(T);
             PropertyInfo[] pop = type.GetProperties();
-            T obj = (T) Activator.CreateInstance(typeof(T));
+            T obj = (T)Activator.CreateInstance(typeof(T));
             foreach (var item in pop)
             {
                 //Console.WriteLine(row[item.Name]);

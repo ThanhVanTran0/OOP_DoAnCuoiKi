@@ -70,6 +70,19 @@ namespace MembershipLib.DAO
             return role;
         }
 
+        public Role FindByKey(string key, string value)
+        {
+            Role role = new Role();
+            string query = string.Format("select * from Role where " + key + "='{0}'", value);
+            DataTable a = new DataTable();
+            a = dataProvider.ExecuteReturn(query);
+            if (a == null || a.Rows.Count == 0)
+                return null;
+            role.Id = (int)a.Rows[0]["ID"];
+            role.Name = (string)a.Rows[0]["name"];
+            return role;
+        }
+
         public List<Role> selectAll()
         {
             List<Role> list = new List<Role>();
