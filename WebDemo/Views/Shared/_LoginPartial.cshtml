@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNet.Identity
+@if (HttpContext.Current.Request.Cookies["name"] != null && HttpContext.Current.Request.Cookies["name"].Value != "")
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + HttpContext.Current.Request.Cookies["name"].Value, "Index", "Home")
+        </li>
+        <li><a href="/Home/Logout">Log off</a></li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Log in", "Index", "Login", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
