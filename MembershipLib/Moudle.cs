@@ -20,14 +20,19 @@ namespace MembershipLib
         }
         public void Init()
         {
-            string connect = "Data Source=DESKTOP-251QNVR\\SQLEXPRESS;Initial Catalog=OOP;Integrated Security=True";
+            string connect = "Data Source=DESKTOP-DR5G9EO\\SQLEXPRESS;Initial Catalog=OOP;Integrated Security=True";
             IDataProvider dataProvider = new SQLDataProvider(connect);
             dataProvider.Open();
             SetModel<IDataProvider>(dataProvider);
             RoleDAO roleDAO = new RoleDAO(dataProvider);
-            RoleBUS roleBUS = new RoleBUS(roleDAO); 
+            RoleBUS roleBUS = new RoleBUS(roleDAO);
+
+            UserDAO userDAO = new UserDAO(dataProvider);
+            UserBUS userBUS = new UserBUS(userDAO);
             SetModel<DAO<Role>>(roleDAO);
             SetModel<BUS<Role>>(roleBUS);
+            SetModel<DAO<User>>(userDAO);
+            SetModel<BUS<User>>(userBUS);
         }
 
         public void SetModel<Inf>(Inf model)

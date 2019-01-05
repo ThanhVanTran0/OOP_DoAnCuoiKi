@@ -14,6 +14,10 @@ namespace MembershipLib.BUS
         bool Insert(T t);
         bool Update(T t);
 
+        bool CheckValidate(T t);
+        string GetPermission(string t);
+
+        T FindByKey(string key, string value);
         bool Delete(T t);
         List<T> selectAll();
         DataTable selectAllTable();

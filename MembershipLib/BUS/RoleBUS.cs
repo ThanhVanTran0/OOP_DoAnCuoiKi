@@ -52,5 +52,19 @@ namespace MembershipLib.BUS
                 role1.Name = role.Name;
             return dao.Update(role1);
         }
+        public bool CheckValidate(Role role)
+        {
+            return false;
+        }
+
+        public string GetPermission(string t)
+        {
+            return "";
+        }
+
+        public Role FindByKey(string key, string value)
+        {
+            return dao.FindByKey(key, value);
+        }
     }
 }

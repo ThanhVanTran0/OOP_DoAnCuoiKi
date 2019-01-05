@@ -17,10 +17,33 @@ namespace MembershipLib
 
         public Role(string name)
         {
-            this.name = name;
+            this.Name = name;
         }
 
-        public int Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value;
+            }
+        }
     }
 }

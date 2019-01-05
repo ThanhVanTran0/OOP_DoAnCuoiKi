@@ -71,6 +71,36 @@ namespace MembershipLib.DAO
             return user;
         }
 
+        public User FindByName(string name)
+        {
+            User user = new User();
+            string query = string.Format("select * from TableUser where name='{0}'", name);
+            DataTable a = new DataTable();
+            a = dataProvider.ExecuteReturn(query);
+            if (a.Rows.Count == 0)
+                return null;
+            user.Id = (int)a.Rows[0]["ID"];
+            user.Name = (string)a.Rows[0]["name"];
+            user.Password = (string)a.Rows[0]["pass"];
+            user.Role = (int)a.Rows[0]["Role"];
+            return user;
+        }
+
+        public User FindByKey(string key, string value)
+        {
+            User user = new User();
+            string query = string.Format("select * from TableUser where " + key + " ='{0}'", value);
+            DataTable a = new DataTable();
+            a = dataProvider.ExecuteReturn(query);
+            if (a.Rows.Count == 0)
+                return null;
+            user.Id = (int)a.Rows[0]["ID"];
+            user.Name = (string)a.Rows[0]["name"];
+            user.Password = (string)a.Rows[0]["pass"];
+            user.Role = (int)a.Rows[0]["Role"];
+            return user;
+        }
+
         public List<User> selectAll()
         {
             throw new NotImplementedException();
