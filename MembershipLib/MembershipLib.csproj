@@ -74,12 +74,16 @@
     <Compile Include="ATT\Identity.cs" />
     <Compile Include="AttributeLib\Authenticated.cs" />
     <Compile Include="AttributeLib\CheckAuthorize.cs" />
+    <Compile Include="ATT\PrimaryKey.cs" />
     <Compile Include="BUS\BUS.cs" />
+    <Compile Include="BUS\BUSObj.cs" />
     <Compile Include="BUS\RoleBUS.cs" />
     <Compile Include="BUS\UserBUS.cs" />
     <Compile Include="DAO\DAO.cs" />
+    <Compile Include="DAO\DAOObj.cs" />
     <Compile Include="DAO\IDataProvider.cs" />
     <Compile Include="DAO\RoleDAO.cs" />
+    <Compile Include="DAO\SqlDaoObj.cs" />
     <Compile Include="DAO\SQLDataProvider.cs" />
     <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="Moudle.cs" />

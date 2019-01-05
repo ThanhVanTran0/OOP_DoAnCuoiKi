@@ -18,7 +18,7 @@ namespace MembershipLib.DAO
 
         public bool Delete(User t)
         {
-            string query = string.Format("delete from TableUser where ID={0}", t.Id);
+            string query = string.Format("delete from dbo.[User] where ID={0}", t.Id);
             try
             {
                 dataProvider.Execute(query);
@@ -32,7 +32,7 @@ namespace MembershipLib.DAO
 
         public bool Insert(User t)
         {
-            string query = string.Format("insert into TableUser(name,pass,Role) values('{0}','{1}',{2})", t.Name, t.Pass, t.Role);
+            string query = string.Format("insert into dbo.[User](name,pass,Role) values('{0}','{1}',{2})", t.Name, t.Pass, t.Role);
             try
             {
                 dataProvider.Execute(query);
@@ -46,7 +46,7 @@ namespace MembershipLib.DAO
 
         public bool Update(User t)
         {
-            string query = string.Format("update TableUser set name='{0}', pass='{1}', Role={2} where ID={3}", t.Name, t.Pass, t.Role, t.Id);
+            string query = string.Format("update dbo.[User] set name='{0}', pass='{1}', Role={2} where ID={3}", t.Name, t.Pass, t.Role, t.Id);
             try
             {
                 dataProvider.Execute(query);
@@ -61,7 +61,7 @@ namespace MembershipLib.DAO
         public User Find(User t)
         {
             User user = new User();
-            string query = string.Format("select * from TableUser where name='{0}'", t.Name);
+            string query = string.Format("select * from dbo.[User] where name='{0}'", t.Name);
             DataTable a = new DataTable();
             a = dataProvider.ExecuteReturn(query);
             if (a.Rows.Count == 0)
@@ -76,7 +76,7 @@ namespace MembershipLib.DAO
         public User FindByName(string name)
         {
             User user = new User();
-            string query = string.Format("select * from TableUser where name='{0}'", name);
+            string query = string.Format("select * from dbo.[User] where name='{0}'", name);
             DataTable a = new DataTable();
             a = dataProvider.ExecuteReturn(query);
             if (a.Rows.Count == 0)
@@ -91,7 +91,7 @@ namespace MembershipLib.DAO
         public User FindByKey(string key, string value)
         {
             User user = new User();
-            string query = string.Format("select * from TableUser where " + key + " ='{0}'", value);
+            string query = string.Format("select * from dbo.[User] where " + key + " ='{0}'", value);
             DataTable a = new DataTable();
             a = dataProvider.ExecuteReturn(query);
             if (a.Rows.Count == 0)
@@ -111,7 +111,7 @@ namespace MembershipLib.DAO
         public DataTable selectAllTable()
         {
             User user = new User();
-            string query = string.Format("select * from TableUser");
+            string query = string.Format("select * from dbo.[User]");
             DataTable a = new DataTable();
             a = dataProvider.ExecuteReturn(query);
             return a;

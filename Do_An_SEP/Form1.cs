@@ -40,7 +40,7 @@ namespace Do_An_SEP
         }
         private void LoadData()
         {
-            BUS<T> bus = Moudle.INSTANCE.GetModel<BUS<T>>();
+            BUSObj<T> bus = Moudle.INSTANCE.GetModel<BUSObj<T>>();
             if(bus != null)
             {
                 DataTable table = bus.selectAllTable();
@@ -68,7 +68,7 @@ namespace Do_An_SEP
         {
             DataRowView row = (DataRowView)data.SelectedRows[0].DataBoundItem;
             T delObj = ConvertDataRow(row);
-            if (Moudle.INSTANCE.GetModel<BUS<T>>().Delete(delObj))
+            if (Moudle.INSTANCE.GetModel<BUSObj<T>>().Delete(delObj))
                 MessageBox.Show("Xóa thành công");
             else
                 MessageBox.Show("Lỗi xóa");

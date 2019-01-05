@@ -108,7 +108,7 @@ namespace Do_An_SEP
             }
             else
             {
-                if (Moudle.INSTANCE.GetModel<BUS<T>>().Update(mObject))
+                if (Moudle.INSTANCE.GetModel<BUSObj<T>>().Update(mObject))
                 {
                     MessageBox.Show("Update thành công");
                     this.DialogResult = DialogResult.OK;

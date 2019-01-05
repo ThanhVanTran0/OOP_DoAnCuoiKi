@@ -24,16 +24,13 @@ namespace MembershipLib
             IDataProvider dataProvider = new SQLDataProvider(connect);
             dataProvider.Open();
             SetModel<IDataProvider>(dataProvider);
-            RoleDAO roleDAO = new RoleDAO(dataProvider);
-            RoleBUS roleBUS = new RoleBUS(roleDAO);
 
-            UserDAO userDAO = new UserDAO(dataProvider);
-            UserBUS userBUS = new UserBUS(userDAO);
-            SetModel<DAO<Role>>(roleDAO);
-            SetModel<BUS<Role>>(roleBUS);
+            DAOObj<Role> dao = new SqlDaoObj<Role>(dataProvider);
+            BUSObj<Role> bus = new BUSObj<Role>(dao);
 
-            SetModel<DAO<User>>(userDAO);
-            SetModel<BUS<User>>(userBUS);
+            SetModel<DAOObj<Role>>(dao);
+            SetModel<BUSObj<Role>>(bus);
+
         }
 
         public void SetModel<Inf>(Inf model)

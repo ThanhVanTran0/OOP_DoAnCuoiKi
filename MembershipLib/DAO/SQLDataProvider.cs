@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
 namespace MembershipLib
 {
+
     public class SQLDataProvider : IDataProvider
     {
         private SqlConnection connection;
@@ -31,11 +33,6 @@ namespace MembershipLib
             }
         }
 
-        public void Execute(string query)
-        {
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.ExecuteNonQuery();
-        }
 
 
         public bool Open()
@@ -43,13 +40,18 @@ namespace MembershipLib
             this.connection = new SqlConnection(this.stringConnection);
             try
             {
-                this.connection.Open(); 
+                this.connection.Open();
                 return true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return false;
             }
+        }
+        public void Execute(string query)
+        {
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.ExecuteNonQuery();
         }
 
         public DataTable ExecuteReturn(string query)
@@ -59,5 +61,30 @@ namespace MembershipLib
             cmd.Fill(table);
             return table;
         }
+
+        public void Execute(string query, List<DbParameter> listParam)
+        {
+            SqlCommand cmd = new SqlCommand(query, connection);
+            foreach (var item in listParam)
+            {
+                cmd.Parameters.Add(item);
+            }
+            cmd.ExecuteNonQuery();
+        }
+
+        public DataTable ExecuteReturn(string query, List<DbParameter> listParam)
+        {
+            DataTable table = new DataTable();
+            SqlCommand cmd = new SqlCommand(query, connection);
+            foreach (var item in listParam)
+            {
+                cmd.Parameters.Add(item);
+            }
+            SqlDataAdapter adpater = new SqlDataAdapter(cmd);
+            adpater.Fill(table);
+            return table;
+        }
+
+
     }
 }

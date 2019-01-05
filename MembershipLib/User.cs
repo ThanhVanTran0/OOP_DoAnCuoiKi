@@ -16,6 +16,15 @@ namespace MembershipLib
         {
 
         }
+        public User(int id,string name, string password, string _role)
+        {
+            this.id = id;
+            this.name = name;
+            this.pass = password;
+            this._role = Int32.Parse(_role);
+        }
+
+
         public User(string name,string password,string _role)
         {
             this.name = name;
@@ -23,8 +32,8 @@ namespace MembershipLib
             this._role = Int32.Parse(_role);
         }
 
-
         [IdentityAttribute]
+        [PrimaryKey]
         public int Id
         {
             get
